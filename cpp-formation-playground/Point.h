@@ -20,6 +20,7 @@ public:
 	Point(float);
 	Point(float,float);
 	Point(const Point&);
+	Point(Point&&);
 	void move(float, float);
 	void display() const ;
 	static unsigned int numberOfPointers();

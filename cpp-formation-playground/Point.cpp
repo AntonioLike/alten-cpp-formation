@@ -40,6 +40,12 @@ Point::Point(const Point & point)
 	Point::counter++;
 }
 
+Point::Point(Point && p):x(0),y(0)
+{
+	std::swap(x, p.x);
+	std::swap(y, p.y);
+}
+
 void Point::move(float x, float y)
 {
 	this->x = x;
