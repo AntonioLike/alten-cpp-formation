@@ -1,4 +1,6 @@
 #pragma once
+#include <initializer_list>
+
 class ArrayClass
 {
 	int* array;
@@ -6,9 +8,11 @@ class ArrayClass
 
 public:
 	ArrayClass(unsigned int);
+	ArrayClass(const ArrayClass &);
+	ArrayClass(std::initializer_list<int>);
 	int &element(unsigned int);
-	void display();
-	unsigned int getSize();
+	void display() const;
+	unsigned int getSize() const;
 	void extend(unsigned int);
 
 	~ArrayClass();
