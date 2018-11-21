@@ -18,6 +18,10 @@ std::string compareValueToString(CompareValue enumValue) {
 	}
 }
 
+void printPointer(const Point& p) {
+	std::cout << "The point is " << p.x << "," << p.y << std::endl;
+}
+
 Point::Point() : Point(0, 0)
 {
 }
