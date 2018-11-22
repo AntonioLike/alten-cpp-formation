@@ -1,8 +1,7 @@
 #pragma once
 #include "ArrayClass.h"
-class Stack :
-	protected ArrayClass
-{
+class Stack {
+	ArrayClass array;// = ArrayClass(0);
 	unsigned int currentSize;
 public:
 	Stack(unsigned int);
@@ -14,6 +13,7 @@ public:
 	int peek();
 	unsigned int getCurrentSize();
 	
+
 	bool operator==(const Stack&) const;
 };
 

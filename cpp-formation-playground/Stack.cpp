@@ -2,11 +2,11 @@
 #include "Stack.h"
 
 
-Stack::Stack(unsigned int size):ArrayClass(size)
+Stack::Stack(unsigned int size):array(size)
 {
+	//array = ArrayClass(size);
 	currentSize = 0;
 }
-
 
 Stack::~Stack()
 {
@@ -14,13 +14,13 @@ Stack::~Stack()
 
 bool Stack::isEmpty() const
 {
-	return currentSize == 0)
+	return currentSize == 0;
 }
 
 void Stack::push(int value)
 {
-	if (currentSize < getSize()) {
-		(*this)[currentSize] = value;
+	if (currentSize < array.getSize()) {
+		array[currentSize] = value;
 		currentSize++;
 	}
 }
@@ -29,12 +29,12 @@ int Stack::pop()
 {
 	//int result = (*this)[currentSize-1];
 	//(*this)[currentSize - 1] = 0;
-	return isEmpty() ? 0:(*this)[--currentSize];
+	return isEmpty() ? 0:array[--currentSize];
 }
 
 int Stack::peek()
 {
-	return isEmpty() ? 0:(*this)[currentSize - 1];
+	return isEmpty() ? 0:array[currentSize - 1];
 }
 
 unsigned int Stack::getCurrentSize()
@@ -46,5 +46,5 @@ bool Stack::operator==(const Stack & s) const
 {
 	if (s.currentSize != currentSize)
 		return false;
-	return (*this).ArrayClass::operator==(s);
+	return array==s.array;
 }
