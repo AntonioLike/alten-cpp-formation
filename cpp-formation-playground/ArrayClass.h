@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <initializer_list>
 
 class ArrayClass
@@ -15,6 +16,15 @@ public:
 	unsigned int getSize() const;
 	void extend(unsigned int);
 
+	ArrayClass operator+(const ArrayClass&) const;
+	bool operator==(const ArrayClass&) const;
+	bool operator!=(const ArrayClass&) const;
+	ArrayClass& operator=(const ArrayClass&);
+	ArrayClass& operator=(ArrayClass&&);
+	int& operator[](unsigned int);
+	int& operator[](unsigned int) const;
+
 	~ArrayClass();
 };
 
+std::ostream & operator<<(std::ostream&, const ArrayClass&);

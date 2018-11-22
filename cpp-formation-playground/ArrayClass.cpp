@@ -77,7 +77,82 @@ void ArrayClass::extend(unsigned int extra)
 	size += extra;
 }
 
+ArrayClass ArrayClass::operator+(const ArrayClass & arr) const
+{
+	ArrayClass resultArray = ArrayClass(arr.getSize() + getSize());
+	unsigned int i = 0;
+	for (; i < getSize(); i++) {
+		resultArray[i] = (*this)[i];
+	}
+	for (unsigned int j = 0; j < arr.getSize(); j++) {
+		resultArray[i] = arr[j];
+		i++;
+	}
+	return resultArray;
+}
+
+bool ArrayClass::operator==(const ArrayClass & arr) const
+{
+	if (getSize() != arr.getSize())
+		return false;
+	for (unsigned int i = 0; i < getSize(); i++) {
+		if (this[i] != arr[i])
+			return false;
+	}
+	return true;
+}
+
+bool ArrayClass::operator!=(const ArrayClass & arr) const
+{
+	return !((*this) == arr);
+}
+
+ArrayClass & ArrayClass::operator=(const ArrayClass & arr)
+{	
+	if (this != &arr) { // protect against invalid self-assignment
+			// 1: allocate new memory and copy the elements
+		int* new_array = new int[arr.size];
+		std::copy(arr.array, arr.array + arr.size, new_array);
+
+		// 2: deallocate old memory
+		delete[] array;
+
+		// 3: assign the new memory to the object
+		array = new_array;
+		size = arr.size;
+	}
+	// by convention, always return *this
+	return *this;
+}
+
+ArrayClass & ArrayClass::operator=(ArrayClass && arr)
+{
+	std::swap(size, arr.size);
+	std::swap(array, arr.array);
+	return *this;
+}
+
+int & ArrayClass::operator[](unsigned int index)
+{
+	return array[index];
+}
+
+int & ArrayClass::operator[](unsigned int index) const
+{
+	return array[index];
+}
+
 ArrayClass::~ArrayClass()
 {
 	delete [] array;
+}
+
+std::ostream & operator<<(std::ostream & os, const ArrayClass & arr)
+{
+	os << "[" << arr[0];
+	for (unsigned int i = 1; i < arr.getSize(); i++) {
+		os << " , " << arr[i];
+	}
+	os << "]";
+	return os;
 }
