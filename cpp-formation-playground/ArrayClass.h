@@ -28,3 +28,12 @@ public:
 };
 
 std::ostream & operator<<(std::ostream&, const ArrayClass&);
+
+template<typename T>
+void displayArr(const T& array, unsigned int n) {
+	std::cout << "[" << array[0];
+	for (unsigned int i = 1; i < n; i++) {
+		std::cout << "," << array[i];
+	}
+	std::cout << "]" << std::endl;
+}
