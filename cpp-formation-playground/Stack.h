@@ -2,8 +2,9 @@
 #include "ArrayClass.h"
 #include <exception>
 
+
 class Stack {
-	ArrayClass array;// = ArrayClass(0);
+	ArrayClass<int> array;// = ArrayClass(0);
 	unsigned int currentSize;
 public:
 	Stack(unsigned int);
